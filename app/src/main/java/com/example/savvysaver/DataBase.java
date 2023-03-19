@@ -130,6 +130,15 @@ public class DataBase extends SQLiteOpenHelper {
         return dataList;
     }
 
+    public HashMap<String, String> getExpense(String user, String id){
+        ArrayList<HashMap<String, String>> expenses = getExpenses(user);
+        for (HashMap<String, String> expense: expenses) {
+            if (id.equals(expense.get(Utilities.EXPENSES_ID)))
+                    return expense;
+        }
+        return null;
+    }
+
     public void updateExpenses(String id, String name, float amount, String type, String description) {
         // Conexion con la base de datos
         SQLiteDatabase db = getWritableDatabase();
